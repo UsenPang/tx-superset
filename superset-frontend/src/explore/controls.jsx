@@ -75,6 +75,7 @@ export const PRIMARY_COLOR = { r: 0, g: 122, b: 135, a: 1 };
 // input choices & options
 export const D3_FORMAT_OPTIONS = [
   ['SMART_NUMBER', t('Adaptive formatting')],
+  ['ZH_SMART_NUMBER', t('Adaptive formatting for zh')],
   ['~g', t('Original value')],
   [',d', ',d (12345.432 => 12,345)'],
   ['.1s', '.1s (12345.432 => 10k)'],

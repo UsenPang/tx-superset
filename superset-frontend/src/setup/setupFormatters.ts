@@ -28,6 +28,7 @@ import {
   createSmartDateFormatter,
   createSmartDateVerboseFormatter,
   createSmartDateDetailedFormatter,
+  createZhSmartNumberFormatter,
 } from '@superset-ui/core';
 import { FormatLocaleDefinition } from 'd3-format';
 import { TimeLocaleDefinition } from 'd3-time-format';
@@ -76,6 +77,14 @@ export default function setupFormatters(
     .registerValue(
       'DURATION_SUB',
       createDurationFormatter({ formatSubMilliseconds: true }),
+    )
+    .registerValue(
+      NumberFormats.ZH_SMART_NUMBER,
+      createZhSmartNumberFormatter(),
+    )
+    .registerValue(
+      NumberFormats.ZH_SMART_NUMBER_SIGNED,
+      createZhSmartNumberFormatter({ signed: true }),
     );
 
   const timeFormatterRegistry = getTimeFormatterRegistry();
