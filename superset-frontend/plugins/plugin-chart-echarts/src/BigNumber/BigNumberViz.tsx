@@ -30,6 +30,7 @@ import {
 import Echart from '../components/Echart';
 import { BigNumberVizProps } from './types';
 import { EventHandlers } from '../types';
+import sandboxedEval from './sandbox';
 
 const defaultNumberFormatter = getNumberFormatter();
 
@@ -279,8 +280,14 @@ class BigNumberVis extends PureComponent<BigNumberVizProps> {
       kickerFontSize,
       headerFontSize,
       subheaderFontSize,
+      jsOnClickFn,
     } = this.props;
     const className = this.getClassName();
+
+    let handlerClick;
+    if (jsOnClickFn) {
+      handlerClick = sandboxedEval(jsOnClickFn);
+    }
 
     if (showTrendLine) {
       const chartHeight = Math.floor(PROPORTION.TRENDLINE * height);
@@ -310,7 +317,13 @@ class BigNumberVis extends PureComponent<BigNumberVizProps> {
     }
 
     return (
-      <div className={className} style={{ height }}>
+      <div
+        className={className}
+        style={{ height }}
+        role="button"
+        tabIndex={0}
+        onClick={handlerClick}
+      >
         {this.renderFallbackWarning()}
         {this.renderKicker((kickerFontSize || 0) * height)}
         {this.renderHeader(Math.ceil(headerFontSize * height))}

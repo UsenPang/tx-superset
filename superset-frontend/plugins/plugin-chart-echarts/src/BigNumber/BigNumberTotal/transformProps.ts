@@ -29,7 +29,7 @@ import {
   getValueFormatter,
 } from '@superset-ui/core';
 import { BigNumberTotalChartProps, BigNumberVizProps } from '../types';
-import { getDateFormatter, parseMetricValue } from '../utils';
+import { getDateFormatter, parseMetricValue, parseJsOnClickFn } from '../utils';
 import { Refs } from '../../types';
 
 export default function transformProps(
@@ -58,6 +58,7 @@ export default function transformProps(
   const refs: Refs = {};
   const { data = [], coltypes = [] } = queriesData[0];
   const granularity = extractTimegrain(rawFormData as QueryFormData);
+  const jsOnClickFn = parseJsOnClickFn(rawFormData as QueryFormData);
   const metricName = getMetricLabel(metric);
   const formattedSubheader = subheader;
   const bigNumber =
@@ -110,5 +111,6 @@ export default function transformProps(
     onContextMenu,
     refs,
     colorThresholdFormatters,
+    jsOnClickFn,
   };
 }

@@ -23,6 +23,7 @@ import {
   getTimeFormatterForGranularity,
   SMART_DATE_ID,
   TimeGranularity,
+  QueryFormData,
 } from '@superset-ui/core';
 
 export const parseMetricValue = (metricValue: number | string | null) => {
@@ -35,6 +36,9 @@ export const parseMetricValue = (metricValue: number | string | null) => {
   }
   return metricValue;
 };
+
+export const parseJsOnClickFn = (formData: QueryFormData): string =>
+  formData?.js_onclick_fn as string;
 
 export const getDateFormatter = (
   timeFormat: string,

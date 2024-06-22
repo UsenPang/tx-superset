@@ -25,6 +25,7 @@ import {
   getStandardizedControls,
 } from '@superset-ui/chart-controls';
 import { headerFontSize, subheaderFontSize } from '../sharedControls';
+import { jsOnclickFn } from './controls';
 
 export default {
   controlPanelSections: [
@@ -32,6 +33,10 @@ export default {
       label: t('Query'),
       expanded: true,
       controlSetRows: [['metric'], ['adhoc_filters']],
+    },
+    {
+      label: t('Advanced'),
+      controlSetRows: [[jsOnclickFn]],
     },
     {
       label: t('Display settings'),
