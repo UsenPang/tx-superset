@@ -171,7 +171,7 @@ function SortIcon<D extends object>({ column }: { column: ColumnInstance<D> }) {
 function SearchInput({ count, value, onChange }: SearchInputProps) {
   const [openSearch, setOpenSearch] = useState(false);
   return (
-    <span className="dt-global-filter">
+    <span>
       {openSearch ? (
         <input
           className="form-control input-sm"
@@ -792,6 +792,7 @@ export default function TableChart<D extends DataRecord = DataRecord>(
     <Styles>
       <DataTable<D>
         columns={columns}
+        columnsMeta={columnsMeta}
         data={data}
         rowCount={rowCount}
         tableClassName="table table-striped table-condensed"

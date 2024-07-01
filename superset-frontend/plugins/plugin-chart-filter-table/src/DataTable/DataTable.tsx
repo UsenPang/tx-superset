@@ -24,6 +24,7 @@ import {
   MutableRefObject,
   CSSProperties,
   DragEvent,
+  useMemo,
 } from 'react';
 
 import {
@@ -52,6 +53,9 @@ import ColumnFilterButton from './components/ColumnFilterButton';
 import useSticky from './hooks/useSticky';
 import { PAGE_SIZE_OPTIONS } from '../consts';
 import { sortAlphanumericCaseInsensitive } from './utils/sortAlphanumericCaseInsensitive';
+import FilterComponent from './components/FilterSelector/index';
+import { DataColumnMeta } from '../types';
+import AdhocFilter from './components/FilterSelector/Filter';
 
 export interface DataTableProps<D extends object> extends TableOptions<D> {
   tableClassName?: string;
@@ -73,6 +77,7 @@ export interface DataTableProps<D extends object> extends TableOptions<D> {
   onColumnOrderChange: () => void;
   showColumnFilter: boolean;
   onClickColumnFilterButton: () => void;
+  columnsMeta: DataColumnMeta[];
 }
 
 export interface RenderHTMLCellProps extends HTMLProps<HTMLTableCellElement> {
@@ -87,6 +92,7 @@ const sortTypes = {
 export default typedMemo(function DataTable<D extends object>({
   tableClassName,
   columns,
+  columnsMeta,
   data,
   serverPaginationData,
   width: initialWidth = '100%',
@@ -163,14 +169,16 @@ export default typedMemo(function DataTable<D extends object>({
   ]);
 
   const defaultGlobalFilter: FilterType<D> = useCallback(
-    (rows: Row<D>[], columnIds: IdType<D>[], filterValue: string) => {
+    (rows: Row<D>[], columnIds: IdType<D>[], filterValue: AdhocFilter[]) => {
       // allow searching by "col1_value col2_value"
-      const joinedString = (row: Row<D>) =>
-        columnIds.map(x => row.values[x]).join(' ');
-      return matchSorter(rows, filterValue, {
-        keys: [...columnIds, joinedString],
-        threshold: rankings.ACRONYM,
-      }) as typeof rows;
+      // const joinedString = (row: Row<D>) =>
+      //   columnIds.map(x => row.values[x]).join(' ');
+      // return matchSorter(rows, filterValue, {
+      //   keys: [...columnIds, joinedString],
+      //   threshold: rankings.ACRONYM,
+      // }) as typeof rows;
+      console.log('global filters:', filterValue);
+      return rows;
     },
     [],
   );
@@ -368,7 +376,12 @@ export default typedMemo(function DataTable<D extends object>({
           <div className="row" style={{ padding: '5px' }}>
             {searchInput ? (
               <div style={{ float: 'right' }}>
-                <GlobalFilter<D>
+                <FilterComponent
+                  columns={columnsMeta}
+                  filters={filterValue}
+                  onFiltersChange={setGlobalFilter}
+                />
+                {/* <GlobalFilter<D>
                   searchInput={
                     typeof searchInput === 'boolean' ? undefined : searchInput
                   }
@@ -379,7 +392,7 @@ export default typedMemo(function DataTable<D extends object>({
                 <ColumnFilterButton
                   showColumnFilter={showColumnFilter}
                   onClick={onClickColumnFilterButton}
-                />
+                /> */}
               </div>
             ) : null}
           </div>
