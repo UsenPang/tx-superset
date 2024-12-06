@@ -32,7 +32,11 @@ import {
   SqlaFormData,
   ChartMetadata,
 } from '@superset-ui/core';
-import type { EChartsCoreOption, EChartsType } from 'echarts/core';
+import type {
+  EChartsCoreOption,
+  EChartsInitOpts,
+  EChartsType,
+} from 'echarts/core';
 import type { TooltipMarker } from 'echarts/types/src/util/format';
 import { StackControlsValue } from './constants';
 
@@ -49,6 +53,7 @@ export type Refs = {
 export interface EchartsProps {
   height: number;
   width: number;
+  echartInitOpts?: EChartsInitOpts;
   echartOptions: EChartsCoreOption;
   eventHandlers?: EventHandlers;
   zrEventHandlers?: EventHandlers;

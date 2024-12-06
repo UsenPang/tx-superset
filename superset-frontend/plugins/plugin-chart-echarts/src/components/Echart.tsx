@@ -45,7 +45,7 @@ import {
   HeatmapChart,
   SunburstChart,
 } from 'echarts/charts';
-import { CanvasRenderer } from 'echarts/renderers';
+import { CanvasRenderer, SVGRenderer } from 'echarts/renderers';
 import {
   TooltipComponent,
   GridComponent,
@@ -68,6 +68,7 @@ const Styles = styled.div<EchartsStylesProps>`
 
 use([
   CanvasRenderer,
+  SVGRenderer,
   BarChart,
   BoxplotChart,
   FunnelChart,
@@ -99,6 +100,7 @@ function Echart(
   {
     width,
     height,
+    echartInitOpts = {},
     echartOptions,
     eventHandlers,
     zrEventHandlers,
@@ -126,7 +128,7 @@ function Echart(
   useEffect(() => {
     if (!divRef.current) return;
     if (!chartRef.current) {
-      chartRef.current = init(divRef.current);
+      chartRef.current = init(divRef.current, null, echartInitOpts);
     }
 
     Object.entries(eventHandlers || {}).forEach(([name, handler]) => {
