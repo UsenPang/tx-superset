@@ -30,3 +30,4 @@ export { default as CategoricalColorsOfRainbow } from './colorsOfRainbow';
 export { default as CategoricalBlueToGreen } from './blueToGreen';
 export { default as CategoricalRedToYellow } from './redToYellow';
 export { default as CategoricalWavesOfBlue } from './wavesOfBlue';
+export { default as CategoricalHighCharts } from './highCharts';

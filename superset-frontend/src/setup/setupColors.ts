@@ -41,6 +41,7 @@ import {
   CategoricalBlueToGreen,
   CategoricalRedToYellow,
   CategoricalWavesOfBlue,
+  CategoricalHighCharts,
 } from '@superset-ui/core';
 
 function registerColorSchemes<T extends ColorScheme>(
@@ -85,6 +86,7 @@ export default function setupColors(
       ...CategoricalBlueToGreen,
       ...CategoricalRedToYellow,
       ...CategoricalWavesOfBlue,
+      ...CategoricalHighCharts,
       ...extraCategoricalColorSchemes,
     ],
     'supersetColors',
