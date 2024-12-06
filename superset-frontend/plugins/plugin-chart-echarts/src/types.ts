@@ -53,6 +53,7 @@ export type Refs = {
 export interface EchartsProps {
   height: number;
   width: number;
+  theme?: string | null;
   echartInitOpts?: EChartsInitOpts;
   echartOptions: EChartsCoreOption;
   eventHandlers?: EventHandlers;
@@ -143,6 +144,7 @@ export interface BaseTransformedProps<F> {
   width: number;
   emitCrossFilters?: boolean;
   coltypeMapping?: Record<string, number>;
+  theme?: string | null;
 }
 
 export type CrossFilterTransformedProps = {

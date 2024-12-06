@@ -30,6 +30,7 @@ import {
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './types';
 import { legendSection } from '../controls';
+import { themeOptions } from '../themes';
 
 const {
   donut,
@@ -69,6 +70,18 @@ const config: ControlPanelConfig = {
       expanded: true,
       controlSetRows: [
         ['color_scheme'],
+        [
+          {
+            name: 'select_theme',
+            config: {
+              type: 'SelectControl',
+              label: t('Theme'),
+              default: null,
+              choices: themeOptions,
+              description: t('Select the theme you want to apply.'),
+            },
+          },
+        ],
         [
           {
             name: 'show_labels_threshold',

@@ -28,7 +28,7 @@ import {
 } from 'react';
 
 import { styled } from '@superset-ui/core';
-import { use, init, EChartsType } from 'echarts/core';
+import { use, init, EChartsType, registerTheme } from 'echarts/core';
 import {
   SankeyChart,
   PieChart,
@@ -60,6 +60,8 @@ import {
 } from 'echarts/components';
 import { LabelLayout } from 'echarts/features';
 import { EchartsHandler, EchartsProps, EchartsStylesProps } from '../types';
+
+import { themes } from '../themes';
 
 const Styles = styled.div<EchartsStylesProps>`
   height: ${({ height }) => height};
@@ -96,10 +98,15 @@ use([
   LabelLayout,
 ]);
 
+Object.entries(themes).forEach(([key, value]) => {
+  registerTheme(key, value);
+});
+
 function Echart(
   {
     width,
     height,
+    theme = null,
     echartInitOpts = {},
     echartOptions,
     eventHandlers,
@@ -128,7 +135,7 @@ function Echart(
   useEffect(() => {
     if (!divRef.current) return;
     if (!chartRef.current) {
-      chartRef.current = init(divRef.current, null, echartInitOpts);
+      chartRef.current = init(divRef.current, theme, echartInitOpts);
     }
 
     Object.entries(eventHandlers || {}).forEach(([name, handler]) => {
