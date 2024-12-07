@@ -29,7 +29,7 @@ import {
   rgbToHex,
   tooltipHtml,
 } from '@superset-ui/core';
-import type { ComposeOption } from 'echarts/core';
+import type { ComposeOption, EChartsInitOpts } from 'echarts/core';
 import type { BarSeriesOption } from 'echarts/charts';
 import {
   EchartsWaterfallChartProps,
@@ -179,6 +179,8 @@ export default function transformProps(
     xAxisLabel,
     yAxisFormat,
     showValue,
+    selectTheme,
+    renderer,
   } = formData;
   const defaultFormatter = currencyFormat?.symbol
     ? new CurrencyFormatter({ d3Format: yAxisFormat, currency: currencyFormat })
@@ -452,11 +454,17 @@ export default function transformProps(
     series: barSeries,
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     refs,
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     setDataMask,
     onContextMenu,

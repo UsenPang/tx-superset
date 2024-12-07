@@ -28,6 +28,7 @@ import {
   getStandardizedControls,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './types';
+import { themeRendererSection } from '../controls';
 
 const { labelType, numberFormat, showLabels } = DEFAULT_FORM_DATA;
 
@@ -49,6 +50,7 @@ const config: ControlPanelConfig = {
       label: t('Chart Options'),
       expanded: true,
       controlSetRows: [
+        ...themeRendererSection,
         ['color_scheme'],
         ['linear_color_scheme'],
         [<ControlSubSectionHeader>{t('Labels')}</ControlSubSectionHeader>],

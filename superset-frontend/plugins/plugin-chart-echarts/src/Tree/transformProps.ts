@@ -21,7 +21,7 @@ import {
   DataRecordValue,
   tooltipHtml,
 } from '@superset-ui/core';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { TreeSeriesOption } from 'echarts/charts';
 import type {
   TreeSeriesCallbackDataParams,
@@ -74,6 +74,7 @@ export default function transformProps(
     nodeLabelPosition,
     childLabelPosition,
     emphasis,
+    renderer,
   }: EchartsTreeFormData = { ...DEFAULT_FORM_DATA, ...formData };
   const metricLabel = getMetricLabel(metric);
 
@@ -219,10 +220,15 @@ export default function transformProps(
     },
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     formData,
     width,
     height,
+    echartInitOpts,
     echartOptions,
     refs,
   };

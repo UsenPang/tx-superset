@@ -31,6 +31,7 @@ import {
   truncateXAxis,
   xAxisBounds,
   xAxisLabelRotation,
+  themeRendererSection,
 } from '../controls';
 import { defaultYAxis } from '../defaults';
 
@@ -66,6 +67,7 @@ const config: ControlPanelConfig = {
       expanded: true,
       tabOverride: 'customize',
       controlSetRows: [
+        ...themeRendererSection,
         ['color_scheme'],
         ...legendSection,
         [

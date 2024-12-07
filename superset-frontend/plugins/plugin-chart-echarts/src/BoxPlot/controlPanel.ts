@@ -36,6 +36,7 @@ import {
   getTemporalColumns,
   sharedControls,
 } from '@superset-ui/chart-controls';
+import { themeRendererSection } from '../controls';
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
@@ -106,6 +107,7 @@ const config: ControlPanelConfig = {
       label: t('Chart Options'),
       expanded: true,
       controlSetRows: [
+        ...themeRendererSection,
         ['color_scheme'],
         [
           {

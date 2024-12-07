@@ -22,6 +22,7 @@ import {
   formatSelectOptionsForRange,
   getStandardizedControls,
 } from '@superset-ui/chart-controls';
+import { themeRendererSection } from '../controls';
 
 const sortAxisChoices = [
   ['alpha_asc', t('Axis ascending')],
@@ -108,6 +109,7 @@ const config: ControlPanelConfig = {
       label: t('Chart Options'),
       expanded: true,
       controlSetRows: [
+        ...themeRendererSection,
         [
           {
             name: 'legend_type',

@@ -26,9 +26,14 @@ import {
   SORT_SERIES_CHOICES,
   sharedControls,
 } from '@superset-ui/chart-controls';
-import { DEFAULT_LEGEND_FORM_DATA, StackControlOptions } from './constants';
+import {
+  DEFAULT_LEGEND_FORM_DATA,
+  StackControlOptions,
+  DEFAULT_ECHART_OPTS,
+} from './constants';
 import { DEFAULT_FORM_DATA } from './Timeseries/constants';
 import { defaultXAxis } from './defaults';
+import { themeOptions } from './themes';
 
 const { legendMargin, legendOrientation, legendType, showLegend } =
   DEFAULT_LEGEND_FORM_DATA;
@@ -350,3 +355,35 @@ export const forceCategorical: ControlSetItem = {
     description: t('Make the x-axis categorical'),
   },
 };
+
+export const rendererControl: ControlSetItem = {
+  name: 'renderer',
+  config: {
+    type: 'RadioButtonControl',
+    renderTrigger: true,
+    label: t('Chart renderer'),
+    default: DEFAULT_ECHART_OPTS.renderer,
+    options: [
+      ['canvas', t('Canvas')],
+      ['svg', t('SVG')],
+    ],
+    description: t('How charts are rendered.'),
+  },
+};
+
+export const selectTheme: ControlSetItem = {
+  name: 'select_theme',
+  config: {
+    type: 'SelectControl',
+    label: t('Theme'),
+    renderTrigger: true,
+    default: null,
+    choices: themeOptions,
+    description: t('Select the theme you want to apply.'),
+  },
+};
+
+export const themeRendererSection: ControlSetRow[] = [
+  [rendererControl],
+  [selectTheme],
+];

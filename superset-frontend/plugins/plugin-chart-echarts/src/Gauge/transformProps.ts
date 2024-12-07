@@ -26,7 +26,7 @@ import {
   getValueFormatter,
   tooltipHtml,
 } from '@superset-ui/core';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { GaugeSeriesOption } from 'echarts/charts';
 import type { GaugeDataItemOption } from 'echarts/types/src/chart/gauge/GaugeSeries';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
@@ -136,6 +136,8 @@ export default function transformProps(
     intervalColorIndices,
     valueFormatter,
     sliceId,
+    selectTheme,
+    renderer,
   }: EchartsGaugeFormData = { ...DEFAULT_GAUGE_FORM_DATA, ...formData };
   const refs: Refs = {};
   const data = (queriesData[0]?.data || []) as DataRecord[];
@@ -347,10 +349,16 @@ export default function transformProps(
     series,
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     setDataMask,
     emitCrossFilters,

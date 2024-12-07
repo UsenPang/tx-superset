@@ -27,7 +27,7 @@ import {
 } from '@superset-ui/core';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
 import type { RadarSeriesDataItemOption } from 'echarts/types/src/chart/radar/RadarSeries';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { RadarSeriesOption } from 'echarts/charts';
 import {
   DEFAULT_FORM_DATA as DEFAULT_RADAR_FORM_DATA,
@@ -103,6 +103,8 @@ export default function transformProps(
     isCircle,
     columnConfig,
     sliceId,
+    selectTheme,
+    renderer,
   }: EchartsRadarFormData = {
     ...DEFAULT_LEGEND_FORM_DATA,
     ...DEFAULT_RADAR_FORM_DATA,
@@ -279,10 +281,16 @@ export default function transformProps(
     },
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     emitCrossFilters,
     setDataMask,

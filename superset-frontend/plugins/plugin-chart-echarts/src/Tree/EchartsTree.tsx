@@ -24,12 +24,14 @@ export default function EchartsGraph({
   height,
   refs,
   width,
+  echartInitOpts,
 }: EchartsProps) {
   return (
     <Echart
       refs={refs}
       height={height}
       width={width}
+      echartInitOpts={echartInitOpts}
       echartOptions={echartOptions}
     />
   );

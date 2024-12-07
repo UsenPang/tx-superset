@@ -23,7 +23,7 @@ import {
   getNumberFormatter,
   getTimeFormatter,
 } from '@superset-ui/core';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { BoxplotSeriesOption } from 'echarts/charts';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
 import {
@@ -73,6 +73,8 @@ export default function transformProps(
     yAxisTitleMargin,
     yAxisTitlePosition,
     sliceId,
+    selectTheme,
+    renderer,
   } = formData as BoxPlotQueryFormData;
   const refs: Refs = {};
   const colorFn = CategoricalColorNamespace.getScale(colorScheme as string);
@@ -286,10 +288,16 @@ export default function transformProps(
     series,
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     setDataMask,
     emitCrossFilters,

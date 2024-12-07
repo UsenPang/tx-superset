@@ -29,7 +29,7 @@ import {
 } from '@superset-ui/core';
 import memoizeOne from 'memoize-one';
 import { maxBy, minBy } from 'lodash';
-import type { ComposeOption } from 'echarts/core';
+import type { ComposeOption, EChartsInitOpts } from 'echarts/core';
 import type { HeatmapSeriesOption } from 'echarts/charts';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
 import { HeatmapChartProps, HeatmapTransformedProps } from './types';
@@ -95,6 +95,8 @@ export default function transformProps(
     yAxisFormat,
     xAxisTimeFormat,
     currencyFormat,
+    selectTheme,
+    renderer,
   } = formData;
   const metricLabel = getMetricLabel(metric);
   const xAxisLabel = getColumnLabel(xAxis);
@@ -239,8 +241,15 @@ export default function transformProps(
       },
     },
   };
+
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     refs,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     width,
     height,

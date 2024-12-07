@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { ScatterSeriesOption } from 'echarts/charts';
 import { extent } from 'd3-array';
 import {
@@ -109,6 +109,8 @@ export default function transformProps(chartProps: EchartsBubbleChartProps) {
     legendMargin,
     legendType,
     sliceId,
+    selectTheme,
+    renderer,
   }: EchartsBubbleFormData = { ...DEFAULT_FORM_DATA, ...formData };
   const colorFn = CategoricalColorNamespace.getScale(colorScheme as string);
 
@@ -230,10 +232,16 @@ export default function transformProps(chartProps: EchartsBubbleChartProps) {
 
   const { onContextMenu, setDataMask = () => {} } = hooks;
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     refs,
     height,
     width,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     onContextMenu,
     setDataMask,

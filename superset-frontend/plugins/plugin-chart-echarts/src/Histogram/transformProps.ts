@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import type { ComposeOption } from 'echarts/core';
+import type { ComposeOption, EChartsInitOpts } from 'echarts/core';
 import type { BarSeriesOption } from 'echarts/charts';
 import type { GridComponentOption } from 'echarts/components';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
@@ -60,6 +60,8 @@ export default function transformProps(
     sliceId,
     xAxisTitle,
     yAxisTitle,
+    selectTheme,
+    renderer,
   } = formData;
   const { data } = queriesData[0];
   const colorFn = CategoricalColorNamespace.getScale(colorScheme);
@@ -181,11 +183,17 @@ export default function transformProps(
     },
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     refs,
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     onFocusedSeries,
     onLegendStateChanged,

@@ -29,7 +29,7 @@ import {
   VizType,
 } from '@superset-ui/core';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { FunnelSeriesOption } from 'echarts/charts';
 import {
   DEFAULT_FORM_DATA as DEFAULT_FUNNEL_FORM_DATA,
@@ -121,6 +121,8 @@ export default function transformProps(
     showLegend,
     sliceId,
     percentCalculationType,
+    selectTheme,
+    renderer,
   }: EchartsFunnelFormData = {
     ...DEFAULT_LEGEND_FORM_DATA,
     ...DEFAULT_FUNNEL_FORM_DATA,
@@ -294,10 +296,16 @@ export default function transformProps(
     series,
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     setDataMask,
     emitCrossFilters,

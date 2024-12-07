@@ -29,9 +29,7 @@ import {
   sharedControls,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './types';
-import { legendSection } from '../controls';
-import { themeOptions } from '../themes';
-import { DEFAULT_ECHART_OPTS } from '../constants';
+import { legendSection, themeRendererSection } from '../controls';
 
 const {
   donut,
@@ -70,36 +68,8 @@ const config: ControlPanelConfig = {
       label: t('Chart Options'),
       expanded: true,
       controlSetRows: [
-        [
-          {
-            name: 'renderer',
-            config: {
-              type: 'RadioButtonControl',
-              renderTrigger: true,
-              label: t('Chart renderer'),
-              default: DEFAULT_ECHART_OPTS.renderer,
-              options: [
-                ['canvas', t('Canvas')],
-                ['svg', t('SVG')],
-              ],
-              description: t('How charts are rendered.'),
-            },
-          },
-        ],
+        ...themeRendererSection,
         ['color_scheme'],
-        [
-          {
-            name: 'select_theme',
-            config: {
-              type: 'SelectControl',
-              label: t('Theme'),
-              renderTrigger: true,
-              default: null,
-              choices: themeOptions,
-              description: t('Select the theme you want to apply.'),
-            },
-          },
-        ],
         [
           {
             name: 'show_labels_threshold',

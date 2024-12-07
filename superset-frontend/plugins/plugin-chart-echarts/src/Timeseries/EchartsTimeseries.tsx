@@ -42,6 +42,8 @@ export default function EchartsTimeseries({
   formData,
   height,
   width,
+  theme,
+  echartInitOpts,
   echartOptions,
   groupby,
   labelMap,
@@ -268,6 +270,8 @@ export default function EchartsTimeseries({
         refs={refs}
         height={height - extraControlHeight}
         width={width}
+        theme={theme}
+        echartInitOpts={echartInitOpts}
         echartOptions={echartOptions}
         eventHandlers={eventHandlers}
         zrEventHandlers={zrEventHandlers}

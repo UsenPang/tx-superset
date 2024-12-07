@@ -43,7 +43,7 @@ import {
   ValueFormatter,
 } from '@superset-ui/core';
 import { getOriginalSeries } from '@superset-ui/chart-controls';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { SeriesOption } from 'echarts';
 import {
   DEFAULT_FORM_DATA,
@@ -205,6 +205,8 @@ export default function transformProps(
     percentageThreshold,
     metrics = [],
     metricsB = [],
+    selectTheme,
+    renderer,
   }: EchartsMixedTimeseriesFormData = { ...DEFAULT_FORM_DATA, ...formData };
 
   const refs: Refs = {};
@@ -692,10 +694,16 @@ export default function transformProps(
     focusedSeries = seriesName;
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     setDataMask,
     emitCrossFilters,

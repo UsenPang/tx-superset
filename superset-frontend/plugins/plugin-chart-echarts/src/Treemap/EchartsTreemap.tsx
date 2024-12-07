@@ -44,6 +44,8 @@ export default function EchartsTreemap({
   width,
   formData,
   coltypeMapping,
+  theme,
+  echartInitOpts,
 }: TreemapTransformedProps) {
   const getCrossFilterDataMask = useCallback(
     (data, treePathInfo) => {
@@ -160,6 +162,8 @@ export default function EchartsTreemap({
       refs={refs}
       height={height}
       width={width}
+      theme={theme}
+      echartInitOpts={echartInitOpts}
       echartOptions={echartOptions}
       eventHandlers={eventHandlers}
       selectedValues={selectedValues}

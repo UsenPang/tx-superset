@@ -20,12 +20,14 @@ import { HeatmapTransformedProps } from './types';
 import Echart from '../components/Echart';
 
 export default function Heatmap(props: HeatmapTransformedProps) {
-  const { height, width, echartOptions, refs } = props;
+  const { height, width, theme, echartInitOpts, echartOptions, refs } = props;
   return (
     <Echart
       refs={refs}
       height={height}
       width={width}
+      theme={theme}
+      echartInitOpts={echartInitOpts}
       echartOptions={echartOptions}
     />
   );

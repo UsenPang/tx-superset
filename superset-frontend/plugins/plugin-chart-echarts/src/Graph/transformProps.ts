@@ -23,7 +23,7 @@ import {
   DataRecordValue,
   tooltipHtml,
 } from '@superset-ui/core';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { GraphSeriesOption } from 'echarts/charts';
 import type { GraphEdgeItemOption } from 'echarts/types/src/chart/graph/GraphSeries';
 import { extent as d3Extent } from 'd3-array';
@@ -193,6 +193,8 @@ export default function transformProps(
     baseNodeSize,
     edgeSymbol,
     sliceId,
+    selectTheme,
+    renderer,
   }: EchartsGraphFormData = { ...DEFAULT_GRAPH_FORM_DATA, ...formData };
 
   const refs: Refs = {};
@@ -357,9 +359,15 @@ export default function transformProps(
 
   const { onContextMenu, setDataMask } = hooks;
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     formData,
     echartOptions,
     onContextMenu,

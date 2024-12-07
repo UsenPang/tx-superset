@@ -34,6 +34,8 @@ import { formatSeriesName } from '../utils/series';
 export default function EchartsMixedTimeseries({
   height,
   width,
+  theme,
+  echartInitOpts,
   echartOptions,
   setDataMask,
   labelMap,
@@ -214,6 +216,8 @@ export default function EchartsMixedTimeseries({
       refs={refs}
       height={height}
       width={width}
+      theme={theme}
+      echartInitOpts={echartInitOpts}
       echartOptions={echartOptions}
       eventHandlers={eventHandlers}
       selectedValues={selectedValues}

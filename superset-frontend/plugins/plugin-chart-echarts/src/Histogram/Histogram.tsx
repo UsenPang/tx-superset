@@ -24,6 +24,8 @@ export default function Histogram(props: HistogramTransformedProps) {
   const {
     height,
     width,
+    theme,
+    echartInitOpts,
     echartOptions,
     onFocusedSeries,
     onLegendStateChanged,
@@ -53,6 +55,8 @@ export default function Histogram(props: HistogramTransformedProps) {
       refs={refs}
       height={height}
       width={width}
+      theme={theme}
+      echartInitOpts={echartInitOpts}
       echartOptions={echartOptions}
       eventHandlers={eventHandlers}
     />

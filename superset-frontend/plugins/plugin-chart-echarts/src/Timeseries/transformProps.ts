@@ -47,7 +47,7 @@ import {
   isDerivedSeries,
   getTimeOffset,
 } from '@superset-ui/chart-controls';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { LineStyleOption } from 'echarts/types/src/util/types';
 import type { SeriesOption } from 'echarts';
 import {
@@ -191,6 +191,8 @@ export default function transformProps(
     yAxisTitleMargin,
     yAxisTitlePosition,
     zoomable,
+    selectTheme,
+    renderer,
   }: EchartsTimeseriesFormData = { ...DEFAULT_FORM_DATA, ...formData };
   const refs: Refs = {};
   const groupBy = ensureIsArray(groupby);
@@ -675,7 +677,13 @@ export default function transformProps(
     focusedSeries = seriesName;
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     emitCrossFilters,
     formData,

@@ -37,6 +37,8 @@ export default function EchartsSunburst(props: SunburstTransformedProps) {
   const {
     height,
     width,
+    theme,
+    echartInitOpts,
     echartOptions,
     setDataMask,
     labelMap,
@@ -156,6 +158,8 @@ export default function EchartsSunburst(props: SunburstTransformedProps) {
       refs={refs}
       height={height}
       width={width}
+      theme={theme}
+      echartInitOpts={echartInitOpts}
       echartOptions={echartOptions}
       eventHandlers={eventHandlers}
       selectedValues={selectedValues}

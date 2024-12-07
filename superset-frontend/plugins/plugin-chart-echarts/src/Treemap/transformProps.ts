@@ -28,7 +28,7 @@ import {
   tooltipHtml,
 } from '@superset-ui/core';
 import type { TreemapSeriesNodeItemOption } from 'echarts/types/src/chart/treemap/TreemapSeries';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { TreemapSeriesOption } from 'echarts/charts';
 import {
   DEFAULT_FORM_DATA as DEFAULT_TREEMAP_FORM_DATA,
@@ -138,6 +138,8 @@ export default function transformProps(
     showUpperLabels,
     dashboardId,
     sliceId,
+    selectTheme,
+    renderer,
   }: EchartsTreemapFormData = {
     ...DEFAULT_TREEMAP_FORM_DATA,
     ...formData,
@@ -291,10 +293,16 @@ export default function transformProps(
     series,
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     setDataMask,
     emitCrossFilters,

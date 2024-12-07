@@ -44,6 +44,8 @@ type Event = {
 export default function EchartsGraph({
   height,
   width,
+  theme,
+  echartInitOpts,
   echartOptions,
   formData,
   onContextMenu,
@@ -173,6 +175,8 @@ export default function EchartsGraph({
       refs={refs}
       height={height}
       width={width}
+      theme={theme}
+      echartInitOpts={echartInitOpts}
       echartOptions={echartOptions}
       eventHandlers={eventHandlers}
     />

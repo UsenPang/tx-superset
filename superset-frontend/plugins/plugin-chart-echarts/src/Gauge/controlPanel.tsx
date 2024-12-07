@@ -25,6 +25,7 @@ import {
   getStandardizedControls,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './types';
+import { themeRendererSection } from '../controls';
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
@@ -107,6 +108,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
+        ...themeRendererSection,
         ['color_scheme'],
         [
           {

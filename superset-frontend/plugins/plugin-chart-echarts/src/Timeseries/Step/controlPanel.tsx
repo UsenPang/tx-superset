@@ -38,6 +38,7 @@ import {
   truncateXAxis,
   xAxisBounds,
   xAxisLabelRotation,
+  themeRendererSection,
 } from '../../controls';
 
 const {
@@ -63,6 +64,7 @@ const config: ControlPanelConfig = {
       label: t('Chart Options'),
       expanded: true,
       controlSetRows: [
+        ...themeRendererSection,
         ...seriesOrderSection,
         ['color_scheme'],
         ['time_shift_color'],

@@ -30,7 +30,7 @@ import {
   tooltipHtml,
   ValueFormatter,
 } from '@superset-ui/core';
-import type { EChartsCoreOption } from 'echarts/core';
+import type { EChartsCoreOption, EChartsInitOpts } from 'echarts/core';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
 import { NULL_STRING, OpacityEnum } from '../constants';
 import { defaultGrid } from '../defaults';
@@ -187,6 +187,8 @@ export default function transformProps(
     showLabelsThreshold,
     showTotal,
     sliceId,
+    selectTheme,
+    renderer,
   } = formData;
   const { currencyFormats = {}, columnFormats = {} } = datasource;
   const refs: Refs = {};
@@ -376,10 +378,16 @@ export default function transformProps(
       : null,
   };
 
+  const echartInitOpts: EChartsInitOpts = {
+    renderer,
+  };
+
   return {
     formData,
     width,
     height,
+    theme: selectTheme,
+    echartInitOpts,
     echartOptions,
     setDataMask,
     emitCrossFilters,

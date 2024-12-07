@@ -24,6 +24,7 @@ import {
   sharedControls,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './constants';
+import { rendererControl } from '../controls';
 
 const requiredEntity = {
   ...sharedControls.entity,
@@ -104,6 +105,8 @@ const controlPanel: ControlPanelConfig = {
       label: t('Chart options'),
       expanded: true,
       controlSetRows: [
+        [<ControlSubSectionHeader>{t('Renderer')}</ControlSubSectionHeader>],
+        [rendererControl],
         [<ControlSubSectionHeader>{t('Layout')}</ControlSubSectionHeader>],
         [
           {
