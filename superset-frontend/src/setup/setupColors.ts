@@ -33,6 +33,7 @@ import {
   CategoricalSuperset,
   SequentialCommon,
   SequentialD3,
+  SequentialHighChart,
   ColorSchemeRegistry,
   ColorSchemeGroup,
   CategoricalPresetSuperset,
@@ -94,7 +95,12 @@ export default function setupColors(
   registerColorSchemes(
     // @ts-ignore
     getSequentialSchemeRegistry(),
-    [...SequentialCommon, ...SequentialD3, ...extraSequentialColorSchemes],
+    [
+      ...SequentialCommon,
+      ...SequentialD3,
+      ...SequentialHighChart,
+      ...extraSequentialColorSchemes,
+    ],
     'superset_seq_1',
   );
 }

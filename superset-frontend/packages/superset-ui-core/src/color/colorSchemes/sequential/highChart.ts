@@ -17,6 +17,15 @@
  * under the License.
  */
 
-export { default as SequentialCommon } from './common';
-export { default as SequentialD3 } from './d3';
-export { default as SequentialHighChart } from './highChart';
+import SequentialScheme from '../../SequentialScheme';
+
+const schemes = [
+  {
+    id: 'highchart_seq',
+    label: 'HighChart Sequential',
+    isDiverging: false,
+    colors: ['#e0ffff', '#5ab1ef'],
+  },
+].map(s => new SequentialScheme(s));
+
+export default schemes;
