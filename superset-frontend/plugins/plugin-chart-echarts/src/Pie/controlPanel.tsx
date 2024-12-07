@@ -31,6 +31,7 @@ import {
 import { DEFAULT_FORM_DATA } from './types';
 import { legendSection } from '../controls';
 import { themeOptions } from '../themes';
+import { DEFAULT_ECHART_OPTS } from '../constants';
 
 const {
   donut,
@@ -69,6 +70,22 @@ const config: ControlPanelConfig = {
       label: t('Chart Options'),
       expanded: true,
       controlSetRows: [
+        [
+          {
+            name: 'renderer',
+            config: {
+              type: 'RadioButtonControl',
+              renderTrigger: true,
+              label: t('Chart renderer'),
+              default: DEFAULT_ECHART_OPTS.renderer,
+              options: [
+                ['canvas', t('Canvas')],
+                ['svg', t('SVG')],
+              ],
+              description: t('How charts are rendered.'),
+            },
+          },
+        ],
         ['color_scheme'],
         [
           {

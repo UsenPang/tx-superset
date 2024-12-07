@@ -149,7 +149,7 @@ function Echart(
     });
 
     chartRef.current.setOption(echartOptions, true);
-  }, [echartOptions, eventHandlers, zrEventHandlers]);
+  }, [theme, echartInitOpts, echartOptions, eventHandlers, zrEventHandlers]);
 
   // highlighting
   useEffect(() => {

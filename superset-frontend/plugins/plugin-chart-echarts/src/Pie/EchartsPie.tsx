@@ -21,7 +21,15 @@ import Echart from '../components/Echart';
 import { allEventHandlers } from '../utils/eventHandlers';
 
 export default function EchartsPie(props: PieChartTransformedProps) {
-  const { height, width, theme, echartOptions, selectedValues, refs } = props;
+  const {
+    height,
+    width,
+    theme,
+    echartInitOpts,
+    echartOptions,
+    selectedValues,
+    refs,
+  } = props;
 
   const eventHandlers = allEventHandlers(props);
 
@@ -31,6 +39,7 @@ export default function EchartsPie(props: PieChartTransformedProps) {
       height={height}
       width={width}
       theme={theme}
+      echartInitOpts={echartInitOpts}
       echartOptions={echartOptions}
       eventHandlers={eventHandlers}
       selectedValues={selectedValues}
