@@ -352,7 +352,12 @@ export default function transformProps(
         label: {
           show: true,
           fontWeight: 'bold',
-          backgroundColor: theme.colors.grayscale.light5,
+        },
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          // eslint-disable-next-line theme-colors/no-literal-colors
+          shadowColor: 'rgba(0, 0, 0, 0.5)',
         },
       },
       data: transformedData,

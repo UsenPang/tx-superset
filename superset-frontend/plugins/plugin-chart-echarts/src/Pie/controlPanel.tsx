@@ -76,6 +76,7 @@ const config: ControlPanelConfig = {
             config: {
               type: 'SelectControl',
               label: t('Theme'),
+              renderTrigger: true,
               default: null,
               choices: themeOptions,
               description: t('Select the theme you want to apply.'),
