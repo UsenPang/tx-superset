@@ -145,6 +145,7 @@ export interface BaseTransformedProps<F> {
   emitCrossFilters?: boolean;
   coltypeMapping?: Record<string, number>;
   theme?: string | null;
+  echartInitOpts?: EChartsInitOpts;
 }
 
 export type CrossFilterTransformedProps = {
