@@ -65,6 +65,8 @@ export type EchartsTimeseriesFormData = QueryFormData & {
   forecastSeasonalityYearly: null;
   logAxis: boolean;
   markerEnabled: boolean;
+  markerAsEmpty: boolean;
+  markerType: EchartsLineSymbolType;
   markerSize: number;
   metrics: QueryFormMetric[];
   minorSplitLine: boolean;
@@ -91,6 +93,7 @@ export type EchartsTimeseriesFormData = QueryFormData & {
   xAxisLabelRotation: number;
   showValue: boolean;
   onlyTotal: boolean;
+  labelInside: boolean;
   showExtraControls: boolean;
   percentageThreshold: number;
   orientation?: OrientationType;
@@ -114,3 +117,13 @@ export type TimeseriesChartTransformedProps =
       };
       onFocusedSeries: (series: string | null) => void;
     };
+
+export enum EchartsLineSymbolType {
+  Circle = 'circle',
+  Rect = 'rect',
+  RoundRect = 'roundRect',
+  Triangle = 'triangle',
+  Diamond = 'diamond',
+  Pin = 'pin',
+  Arrow = 'arrow',
+}

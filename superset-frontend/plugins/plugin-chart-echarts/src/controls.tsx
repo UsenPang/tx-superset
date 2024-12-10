@@ -34,6 +34,7 @@ import {
 import { DEFAULT_FORM_DATA } from './Timeseries/constants';
 import { defaultXAxis } from './defaults';
 import { themeOptions } from './themes';
+import { EchartsLineSymbolType } from './types';
 
 const { legendMargin, legendOrientation, legendType, showLegend } =
   DEFAULT_LEGEND_FORM_DATA;
@@ -147,6 +148,19 @@ export const onlyTotalControl: ControlSetItem = {
   },
 };
 
+export const labelInside: ControlSetItem = {
+  name: 'label_inside',
+  config: {
+    type: 'CheckboxControl',
+    label: t('Label Inside'),
+    default: false,
+    renderTrigger: true,
+    description: t('The position of the label is inside the graphic.'),
+    visibility: ({ controls }: ControlPanelsContainerProps) =>
+      Boolean(controls?.show_value?.value),
+  },
+};
+
 export const percentageThresholdControl: ControlSetItem = {
   name: 'percentage_threshold',
   config: {
@@ -167,6 +181,7 @@ export const percentageThresholdControl: ControlSetItem = {
 
 export const showValueSection: ControlSetRow[] = [
   [showValueControl],
+  [labelInside],
   [stackControl],
   [onlyTotalControl],
   [percentageThresholdControl],
@@ -386,4 +401,76 @@ export const selectTheme: ControlSetItem = {
 export const themeRendererSection: ControlSetRow[] = [
   [rendererControl],
   [selectTheme],
+];
+
+export const markEnabled: ControlSetItem = {
+  name: 'markerEnabled',
+  config: {
+    type: 'CheckboxControl',
+    label: t('Marker'),
+    renderTrigger: true,
+    default: DEFAULT_FORM_DATA.markerEnabled,
+    description: t(
+      'Draw a marker on data points. Only applicable for line types.',
+    ),
+  },
+};
+
+export const markerAsEmpty: ControlSetItem = {
+  name: 'markerAsEmpty',
+  config: {
+    type: 'CheckboxControl',
+    label: t('Marker As Empty'),
+    renderTrigger: true,
+    default: DEFAULT_FORM_DATA.markerAsEmpty,
+    description: t('Draw a empty marker. Only applicable for line types.'),
+    visibility: ({ controls }: ControlPanelsContainerProps) =>
+      Boolean(controls?.markerEnabled?.value),
+  },
+};
+
+export const markerType: ControlSetItem = {
+  name: 'markerType',
+  config: {
+    type: 'SelectControl',
+    label: t('Marker Type'),
+    renderTrigger: true,
+    default: DEFAULT_FORM_DATA.markerType,
+    choices: [
+      [EchartsLineSymbolType.Circle, t('Circle')],
+      [EchartsLineSymbolType.Rect, t('Rect')],
+      [EchartsLineSymbolType.RoundRect, t('Round Rect')],
+      [EchartsLineSymbolType.Triangle, t('Triangle')],
+      [EchartsLineSymbolType.Diamond, t('Diamond')],
+      [EchartsLineSymbolType.Pin, t('Pin')],
+      [EchartsLineSymbolType.Arrow, t('Arrow')],
+    ],
+    description: t(
+      'Graphs of data point marker. Only applicable for line types.',
+    ),
+    visibility: ({ controls }: ControlPanelsContainerProps) =>
+      Boolean(controls?.markerEnabled?.value),
+  },
+};
+
+export const markerSize: ControlSetItem = {
+  name: 'markerSize',
+  config: {
+    type: 'SliderControl',
+    label: t('Marker Size'),
+    renderTrigger: true,
+    min: 0,
+    max: 20,
+    default: DEFAULT_FORM_DATA.markerSize,
+    description: t('Size of marker. Also applies to forecast observations.'),
+    visibility: ({ controls }: ControlPanelsContainerProps) =>
+      Boolean(controls?.markerEnabled?.value),
+  },
+};
+
+export const markerSection: ControlSetRow[] = [
+  [markEnabled],
+  [markerAsEmpty],
+  [markerType],
+  [markerSize],
 ];

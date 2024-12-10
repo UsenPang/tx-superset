@@ -17,7 +17,7 @@
  * under the License.
  */
 /* eslint-disable camelcase */
-import { invert } from 'lodash';
+import { invert, min } from 'lodash';
 import {
   AnnotationLayer,
   AxisType,
@@ -150,11 +150,14 @@ export default function transformProps(
     legendMargin,
     logAxis,
     markerEnabled,
+    markerAsEmpty,
+    markerType,
     markerSize,
     metrics,
     minorSplitLine,
     minorTicks,
     onlyTotal,
+    labelInside,
     opacity,
     orientation,
     percentageThreshold,
@@ -315,6 +318,8 @@ export default function transformProps(
         filterState,
         seriesContexts,
         markerEnabled,
+        markerAsEmpty,
+        markerType,
         markerSize,
         areaOpacity: opacity,
         seriesType,
@@ -329,6 +334,7 @@ export default function transformProps(
             ) ?? defaultFormatter),
         showValue,
         onlyTotal,
+        labelInside,
         totalStackedValues: sortedTotalValues,
         showValueIndexes,
         thresholdValues,

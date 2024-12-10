@@ -55,6 +55,7 @@ import {
   LegendOrientation,
   OrientationType,
   StackType,
+  EchartsLineSymbolType,
 } from '../types';
 
 import {
@@ -69,6 +70,7 @@ import {
   StackControlsValue,
   TIMESERIES_CONSTANTS,
 } from '../constants';
+import { symbol } from 'prop-types';
 
 // based on weighted wiggle algorithm
 // source: https://ieeexplore.ieee.org/document/4658136
@@ -148,6 +150,8 @@ export function transformSeries(
     filterState?: FilterState;
     seriesContexts?: { [key: string]: ForecastSeriesEnum[] };
     markerEnabled?: boolean;
+    markerAsEmpty?: boolean;
+    markerType?: EchartsLineSymbolType;
     markerSize?: number;
     areaOpacity?: number;
     seriesType?: EchartsTimeseriesSeriesType;
@@ -156,6 +160,7 @@ export function transformSeries(
     yAxisIndex?: number;
     showValue?: boolean;
     onlyTotal?: boolean;
+    labelInside?: boolean;
     legendState?: LegendState;
     formatter?: ValueFormatter;
     totalStackedValues?: number[];
@@ -178,6 +183,8 @@ export function transformSeries(
     filterState,
     seriesContexts = {},
     markerEnabled,
+    markerAsEmpty,
+    markerType,
     markerSize,
     areaOpacity = 1,
     seriesType,
@@ -186,6 +193,7 @@ export function transformSeries(
     yAxisIndex = 0,
     showValue,
     onlyTotal,
+    labelInside,
     formatter,
     legendState,
     totalStackedValues = [],
@@ -325,10 +333,12 @@ export function transformSeries(
       ...emphasis,
     },
     showSymbol,
+    symbol: markerAsEmpty ? `empty${markerType}` : markerType,
     symbolSize: markerSize,
     label: {
       show: !!showValue,
-      position: isHorizontal ? 'right' : 'top',
+      position:
+        labelInside && !onlyTotal ? 'inside' : isHorizontal ? 'right' : 'top',
       formatter: (params: any) => {
         const { value, dataIndex, seriesIndex, seriesName } = params;
         const numericValue = isHorizontal ? value[0] : value[1];
