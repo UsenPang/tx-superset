@@ -17,7 +17,7 @@
  * under the License.
  */
 /* eslint-disable camelcase */
-import { invert, min } from 'lodash';
+import { invert } from 'lodash';
 import {
   AnnotationLayer,
   AxisType,

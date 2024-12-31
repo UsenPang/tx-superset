@@ -70,7 +70,6 @@ import {
   StackControlsValue,
   TIMESERIES_CONSTANTS,
 } from '../constants';
-import { symbol } from 'prop-types';
 
 // based on weighted wiggle algorithm
 // source: https://ieeexplore.ieee.org/document/4658136
