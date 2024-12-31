@@ -29,7 +29,11 @@ import {
   columnsByType,
   sections,
 } from '@superset-ui/chart-controls';
-import { showLegendControl, showValueControl, themeRendererSection } from '../controls';
+import {
+  showLegendControl,
+  showValueControl,
+  themeRendererSection,
+} from '../controls';
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
